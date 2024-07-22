@@ -6,17 +6,14 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/11 15:19:11 by sklaps            #+#    #+#              #
-#    Updated: 2024/07/11 15:24:38 by sklaps           ###   ########.fr        #
+#    Updated: 2024/07/22 16:43:55 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLX_DIR = mlx-linux
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 SRC = \
-	  src/main.c \
 	  src/moves.c \
 	  src/moves2.c \
 	  src/moves_utils.c \
@@ -27,7 +24,10 @@ SRC = \
 	  src/sort_stacks.c \
 	  src/sort_three.c \
 	  src/stack_init.c \
-	  src/stack_utils.c
+	  src/stack_utils.c \
+	  src/stack_utils22.c \
+	  src/close.c \
+	  src/main.c
 EXT_LIB = libft/libft.a
 OBJ = $(SRC:.c=.o)
 NAME = push_swap
@@ -35,10 +35,10 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd libft && make all clean && cd ../ && $(CC) $(CFLAGS)  $(OBJ) $(EXT_LIB) -o $(NAME)
+	cd libft && make all clean && cd ../ && -Llibft -lft $(CC) $(CFLAGS) $@ $^ $(EXT_LIB) 
 
 %.o: %.c
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	rm -f $(OBJ)

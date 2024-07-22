@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:40:10 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/11 15:17:09 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/07/22 16:07:56 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ t_stack_node	*stack_getlast(t_stack_node *stack)
 void	swap_top(t_stack_node *stack)
 {
 	t_stack_node	*temp_node;
-	int				stack_len;
+	int				len;
 
-	stack_len = stack_len(stack);
-	if (stack_len < 2)
+	len = stack_len(stack);
+	if (len < 2)
 		return ;
 	temp_node = stack_getn(stack, 3);
 	stack->prev = stack->next;
@@ -51,8 +51,6 @@ void	swap_top(t_stack_node *stack)
 
 void	push_to_bottom(t_stack_node *stack)
 {
-	t_stack_node	*temp_node;
-
 	stack->prev = stack_getlast(stack);
 	stack->next->prev = NULL;
 	stack->next = NULL;
