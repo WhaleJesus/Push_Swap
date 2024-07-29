@@ -6,42 +6,36 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/11 15:19:11 by sklaps            #+#    #+#              #
-#    Updated: 2024/07/22 16:43:55 by sklaps           ###   ########.fr        #
+#    Updated: 2024/07/29 20:59:59 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-SRC = \
-	  src/moves.c \
-	  src/moves2.c \
-	  src/moves_utils.c \
-	  src/moves_utils2.c \
-	  src/split.c \
-	  src/init_a_to_b.c \
-	  src/init_b_to_a.c \
-	  src/sort_stacks.c \
-	  src/sort_three.c \
-	  src/stack_init.c \
-	  src/stack_utils.c \
-	  src/stack_utils22.c \
-	  src/close.c \
-	  src/main.c
-EXT_LIB = libft/libft.a
-OBJ = $(SRC:.c=.o)
-NAME = push_swap
+NAME =			Push_Swap
+LIBFT =			libft.a
+SRC_FILES =		push_swap.c
+SRC_DIR =		src2/
+SRC =			$(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJ =			${SRC:.c=.o}
+CC = 			cc
+CFLAGS =		-Wall -Wextra -Werror
+INCLUDE =		-I include
+RM =			rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	cd libft && make all clean && cd ../ && -Llibft -lft $(CC) $(CFLAGS) $@ $^ $(EXT_LIB) 
+$(NAME) : $(OBJ)
+	@make -C libft
+	$(CC) $(CFLAGS) $(OBJC) $(INCLUDE) libft/$(LIBFT) -o $(NAME)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+clean :
+	@make clean -C libft
+	${RM} $(OBJ)
 
-clean:
-	rm -f $(OBJ)
+fclean : clean
+	@make fclean -C libft
+	${RM} $(NAME)
+	${RM} $(LIBFT)
 
-fclean: clean
-	rm -f $(NAME)
+re : fclean all
+
+.PHONY: all clean fclean re

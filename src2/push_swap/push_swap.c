@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 16:50:52 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/29 19:09:40 by sklaps           ###   ########.fr       */
+/*   Created: 2024/07/29 20:04:30 by sklaps            #+#    #+#             */
+/*   Updated: 2024/07/29 20:40:56 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ps.h"
+#include "../../ps.h"
 
-static void rotate(t_stack_node **stack)
+int	main(int argc, char **argv)
 {
-	t_stack_node	*last_node;
+	t_stack_node *a;
+	t_stack_node *b;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	last_node = find_last(*stack);
-	last_node->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	last_node->next->prev = last_node;
-	last_node->next->next = NULL;
-}
-
-
+	if (argc < 4)
+		exit_program("wrong number of args\n");
+	check_input(argv);

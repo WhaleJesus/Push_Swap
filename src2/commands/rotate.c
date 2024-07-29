@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 16:50:52 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/29 19:09:40 by sklaps           ###   ########.fr       */
+/*   Created: 2024/07/29 19:10:08 by sklaps            #+#    #+#             */
+/*   Updated: 2024/07/29 20:03:51 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ps.h"
+#include "../../ps.h"
 
-static void rotate(t_stack_node **stack)
+static void	rotate(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
 
@@ -20,10 +20,29 @@ static void rotate(t_stack_node **stack)
 		return ;
 	last_node = find_last(*stack);
 	last_node->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
+	(*stack) = (*stack)->next;
 	last_node->next->prev = last_node;
 	last_node->next->next = NULL;
 }
 
+void	ra(t_stack_node **a, bool msg)
+{
+	rotate(a);
+	if (!msg)
+		ft_printf("ra\n");
+}
 
+void	rb(t_stack_node **b, bool msg)
+{
+	rotate(b);
+	if (!msg)
+		ft_printf("rb\n");
+}
+
+void	rr(t_stack_node **a, t_stack_node **b, bool msg)
+{
+	rotate(a);
+	rotate(b);
+	if (!msg)
+		ft_printf("rr\n");
+}
