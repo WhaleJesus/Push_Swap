@@ -6,15 +6,23 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/11 15:19:11 by sklaps            #+#    #+#              #
-#    Updated: 2024/07/29 20:59:59 by sklaps           ###   ########.fr        #
+#    Updated: 2024/07/30 08:16:06 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =			Push_Swap
 LIBFT =			libft.a
-SRC_FILES =		push_swap.c
+PS_FILES =		push_swap.c \
+				input.c
+COM_FILES =		rev_rotate.c \
+				rotate.c \
+				swap.c
+PS_DIR =		push_swap/
+COM_DIR =		commands/
 SRC_DIR =		src2/
-SRC =			$(addprefix $(SRC_DIR), $(SRC_FILES))
+SRCC =			$(addprefix $(COM_DIR), $(COM_FILES))
+SRCPS =			$(addprefix $(PS_DIR), $(PS_FILES))
+SRC =			$(addprefix $(SRC_DIR), $(SRCC)) $(addprefix $(SRC_DIR), $(SRCPS))
 OBJ =			${SRC:.c=.o}
 CC = 			cc
 CFLAGS =		-Wall -Wextra -Werror
@@ -25,7 +33,7 @@ all: $(NAME)
 
 $(NAME) : $(OBJ)
 	@make -C libft
-	$(CC) $(CFLAGS) $(OBJC) $(INCLUDE) libft/$(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(INCLUDE) libft/$(LIBFT) -o $(NAME)
 
 clean :
 	@make clean -C libft
