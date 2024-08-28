@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:21:36 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/23 14:42:53 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:07:32 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static long	ft_atol(const char *s)
 static void	append_node(t_stack_node **stack, int n)
 {
 	t_stack_node	*node;
-	t_stack_node	*last_node;
+	t_stack_node	*last;
 
 	if (!stack)
 		return ;
@@ -53,13 +53,13 @@ static void	append_node(t_stack_node **stack, int n)
 	}
 	else
 	{
-		last_node = find_last(*stack);
-		last_node->next = node;
+		last = get_last(*stack);
+		last->next = node;
 		node->prev = last_node;
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **argv)
+void	init_a(t_stack_node **a, char **argv)
 {
 	long	n;
 	int		i;
@@ -79,7 +79,7 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	}
 }
 
-void	prep_for_push(t_stack_node **stack,
+void	push_prep(t_stack_node **stack,
 						t_stack_node *top_node,
 						char stack_name)
 {

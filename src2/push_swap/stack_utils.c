@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 14:43:41 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/23 15:04:29 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:14:42 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	stack_len(t_stack_node *stack)
 	return (count);
 }
 
-t_stack_node	*find_last(t_stack_node *stack)
+t_stack_node	*get_last(t_stack_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -49,27 +49,30 @@ void	stack_sorted(t_stack_node *stack)
 	return (true);
 }
 
-t_stack_node	*find_min(t_stack_node *stack)
+t_stack_node	*get_min_max(t_stack_node *stack, int check)
 {
-	long			min;
-	t_stack_node	*min_node;
+	long			min_max;
+	t_stack_node	*min_max_node;
 
 	if (!stack)
 		return (NULL);
-	min = LONG_MAX;
+	min_max = LONG_MAX;
+	if (check == 1)
+		min_max = LONG_MIN;
 	while (stack)
 	{
-		if (stack->nbr < min)
+		if ((stack->nbr < min_max && check == 0) || 
+			(stack->nbr > min_max && check == 1))
 		{
-			min = stack->nbr;
-			min_node = stack;
+			min_max = stack->nbr;
+			min_max_node = stack;
 		}
 		stack = stack->next;
 	}
-	return (min_node);
+	return (min_max_node);
 }
 
-t_stack_node *find_max(t_stack_node *stack)
+t_stack_node *get_max(t_stack_node *stack)
 {
 	t_stack_node	*max_node;
 	long			max;
