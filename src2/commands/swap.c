@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:17:17 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/29 20:04:02 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/29 15:04:32 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,11 @@ static void	swap(t_stack_node **stack)
 	(*stack)->prev = NULL;
 }
 
-void	sa(t_stack_node **a, bool msg)
+void	swap_stack(t_stack_node **stack, char *target, bool msg)
 {
-	swap(a);
+	swap(target);
 	if (!msg)
-		ft_printf("sa\n");
-}
-
-void	sb(t_stack_node **b, bool msg)
-{
-	swap(b);
-	if (!msg)
-		ft_printf("sb\n");
+		ft_printf("%s\n", target);
 }
 
 void	ss(t_stack_node **a, t_stack_node **b, bool msg)

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:39:43 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/22 16:44:25 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:30:49 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_stack_node
 	int					push_cost;
 	bool				above_median;
 	bool				cheapest;
-	struct s_stack_node *target_node;
+	struct s_stack_node *target;
 	struct s_stack_node	*next;
 	struct s_stack_node *prev;
 }	t_stack_node;

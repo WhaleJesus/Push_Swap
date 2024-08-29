@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:54:47 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/29 20:03:36 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:41:49 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,11 @@ static void	rev_rotate(t_stack_node **stack)
 	last->next->prev = last;
 }
 
-void	rra(t_stack_node **a, bool msg)
+void	rev_rotate_stack(t_stack_node **stack, char *target, bool msg)
 {
-	rev_rotate(a);
+	rev_rotate(stack);
 	if (!msg)
-		ft_printf("rra\n");
-}
-
-void	rrb(t_stack_node **b, bool msg)
-{
-	rev_rotate(b);
-	if (!mgs)
-		ft_printf("rrb\n");
+		ft_printf("%s\n", target);
 }
 
 void	rrr(t_stack_node **a, t_stack_node **b, bool msg)

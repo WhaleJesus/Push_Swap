@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 20:04:30 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/29 15:11:06 by sklaps           ###   ########.fr       */
+/*   Created: 2024/08/29 16:15:54 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/29 16:39:06 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../ps.h"
 
-int	main(int argc, char **argv)
+static void	move_a_b(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node *a;
-	t_stack_node *b;
+	t_stack_node	*cheapest;
 
-	a = NULL;
-	b = NULL;
-	if (argc < 4)
-		exit_program("Wrong number of args\n");
-	check_input(argv);
-	init_stack_a(&a, argv + 1);
-	if (!stack_sorted(a))
-	{
-		if (stack_len(a) == 2)
-			swap_stack(&a, "sa", false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else
-			sort_stacks(&a, &b);
-	}
-	free_stack(&a);
-	return (0);
+	cheapest = get_cheapest(*a);
+	if (cheapest->above_median && cheapest->target->above_median)
+		rotate_both(a, b, cheapest);
+	else if (!(cheapest->above_median) && !(cheapest->target->above_median))
+		rev_rotate_both(a, b, cheapest);
+	push_prep(a, cheapest, 'a');
+	push_prep(b, cheapest->target, 'b');
+	push_stack(b, a, 'a', false);
 }

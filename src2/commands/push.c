@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 08:18:12 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/30 08:24:14 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:35:30 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ static void	push(t_stack_node **dst, t_stack_node **src)
 	}
 }
 
-void	pa(t_stack_node **a, t_stack_node **b, bool msg)
+void	papb(t_stack_node **a, t_stack_node **b, char target, bool msg)
 {
-	push(a, b);
-	if (!msg)
-		ft_printf("pa\n");
-}
-
-void	pb(t_stack_node **b, t_stack_node **a, bool msg)
-{
-	push(b, a);
-	if (!msg)
-		ft_printf("pb\n");
+	if (target == 'b')
+	{
+		push(a, b);
+		if (!msg)
+			ft_printf("pa\n");
+	}
+	else
+	{
+		push(b, a);
+		if (!msg)
+			ft_printf("pb\n");
+	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:33 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/27 14:55:19 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:30:02 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	error_syntax(char *str_n)
 	return (0);
 }
 
-int	error_duplicate(t_stack_node *a, int n)
+int	error_dup(t_stack_node *a, int i)
 {
 	if (!a)
 		return (0);
 	while (a)
 	{
-		if (a->nbr == n)
+		if (a->nbr == i)
 			return (1);
 		a = a->next;
 	}
@@ -57,7 +57,7 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	free_errors(t_stack_node **a)
+void	_free(t_stack_node **a)
 {
 	free_stack(a);
 	ft_printf("ERROR\n");

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:21:36 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/28 11:07:32 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/29 15:09:54 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	init_a(t_stack_node **a, char **argv)
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
-		if (error_duplicate(*a, (int)n))
+		if (error_dup(*a, (int)n))
 			free_errors(a);
 		append_node(a, (int)n);
 		i++;
@@ -88,16 +88,16 @@ void	push_prep(t_stack_node **stack,
 		if (stack_name == 'a')
 		{
 			if (top_node->above_median)
-				ra(stack, false);
+				rotate_stack(stack, "ra", false);
 			else
-				rra(stack, false);
+				reverse_rotate_stack(stack, "rra", false);
 		}
 		else if (stack_name == 'b')
 		{
 			if (top_node->above_median)
-				rb(stack, false);
+				rotate_stack(stack, "rb", false);
 			else
-				rrb(stack, false);
+				reverse_rotate_stack(stack, "rrb" false);
 		}
 	}
 }
