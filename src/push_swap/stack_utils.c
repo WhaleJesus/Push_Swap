@@ -5,12 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 18:39:38 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/22 16:28:52 by sklaps           ###   ########.fr       */
+/*   Created: 2024/08/23 14:43:41 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/30 17:26:56 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ps.h"
+#include "../../ps.h"
+
+int	stack_len(t_stack_node *stack)
+{
+	int	count;
+
+	if (!stack)
+		return (0);
+	count = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		count++;
+	}
+	return (count);
+}
+
+t_stack_node	*get_last(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
 
 bool	stack_sorted(t_stack_node *stack)
 {
@@ -18,50 +42,40 @@ bool	stack_sorted(t_stack_node *stack)
 		return (1);
 	while (stack->next)
 	{
-		if (stack->nbr > stack->next->nbr)
+		if (stack->next)
 			return (false);
 		stack = stack->next;
 	}
 	return (true);
 }
 
-int	stack_len(t_stack_node *a)
+t_stack_node	*get_min_max(t_stack_node *stack, int check)
 {
-	int	i;
-
-	i = 0;
-	while (stack->next)
-	{
-		i++;
-		stack = stack->next;
-	}
-	return (i);
-}
-
-t_stack_node	*find_min(t_stack_node *stack)
-{
-	long			min;
-	t_stack_node	*min_node;
+	long			min_max;
+	t_stack_node	*min_max_node;
 
 	if (!stack)
 		return (NULL);
-	min = LONG_MAX;
+	min_max = LONG_MAX;
+	if (check == 1)
+		min_max = LONG_MIN;
 	while (stack)
 	{
-		if (stack->nbr < min)
+		if ((stack->nbr < min_max && check == 0) || (stack->nbr > min_max
+				&& check == 1))
 		{
-			min = stack->nbr;
-			min_node = stack;
+			min_max = stack->nbr;
+			min_max_node = stack;
 		}
 		stack = stack->next;
 	}
-	return (min_node);
+	return (min_max_node);
 }
 
-t_stack_node	*find_max(t_stack_node *stack)
+t_stack_node	*get_max(t_stack_node *stack)
 {
-	long			max;
 	t_stack_node	*max_node;
+	long			max;
 
 	if (!stack)
 		return (NULL);

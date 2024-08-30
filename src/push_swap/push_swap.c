@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 17:55:18 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/11 15:25:51 by sklaps           ###   ########.fr       */
+/*   Created: 2024/07/29 20:04:30 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/30 19:00:56 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ps.h"
+#include "../../ps.h"
 
 int	main(int argc, char **argv)
 {
@@ -19,15 +19,16 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	else if (argc == 2)
-		argv = split(argv[1], ' ');
-	init_stack_a(&a, argv + 1);
+	if (argc < 4)
+		exit_program("Wrong number of args\n");
+	check_input(argv);
+	ft_printf("input correct");
+	init_a(&a, argv + 1);
+	ft_printf("init a done");
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
-			sa(&a, false);
+			swap_stack(&a, "sa", false);
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else

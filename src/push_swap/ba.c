@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_b_to_a.c                                      :+:      :+:    :+:   */
+/*   ba.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 19:51:26 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/09 20:30:42 by sklaps           ###   ########.fr       */
+/*   Created: 2024/08/27 14:21:46 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/30 17:44:59 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ps.h"
+#include "../../ps.h"
 
 static void	set_target_b(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_a;
-	t_stack_node	*target_node;
+	t_stack_node	*target;
 	long			best_match_index;
 
 	while (b)
@@ -24,18 +24,17 @@ static void	set_target_b(t_stack_node *a, t_stack_node *b)
 		current_a = a;
 		while (current_a)
 		{
-			if (current_a->nbr > b->nbr
-				&& current_a->nbr < best_match_index)
+			if (current_a->nbr > b->nbr && current_a->nbr < best_match_index)
 			{
 				best_match_index = current_a->nbr;
-				target_node = current_a;
+				target = current_a;
 			}
 			current_a = current_a->next;
 		}
 		if (best_match_index == LONG_MAX)
-			b->target_node = find_min(a);
+			b->target = get_min_max(a, 0);
 		else
-			b->target_node = target_node;
+			b->target = target;
 		b = b->next;
 	}
 }

@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 20:41:06 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/27 15:20:40 by sklaps           ###   ########.fr       */
+/*   Created: 2024/08/30 15:45:58 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/30 17:33:34 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../ps.h"
 
-void	check_input(char **argv)
+void	sort_three(t_stack_node **a)
 {
-	int	i;
+	t_stack_node	*biggest;
 
-	while (*argv)
-	{
-		i = 0;
-		while (*argv[i])
-		{
-			if (*argv[i] == '-')
-			{
-				if (!ft_isdigit(*argv[i + 1]))
-					exit_program("Please provide only numbers");
-			}
-			else if (!ft_isdigit(*argv[i])
-				exit_program("Please provide only numbers");
-			i++;
-		}
-		argv++;
-	}
+	biggest = get_min_max(*a, 1);
+	if (biggest == *a)
+		rotate_stack(a, "a", false);
+	else if ((*a)->next == biggest)
+		rev_rotate_stack(a, "a", false);
+	if ((*a)->nbr > (*a)->next->nbr)
+		swap_stack(a, "a", false);
 }

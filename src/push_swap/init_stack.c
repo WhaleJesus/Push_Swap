@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:21:36 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/29 15:09:54 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/30 19:10:45 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static long	ft_atol(const char *s)
 
 	result = 0;
 	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' \
-		   	|| *s == '\f' || *s == '\v')
+	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || *s == '\f'
+		|| *s == '\v')
 		s++;
 	if (*s == '-' || *s == '+')
 	{
@@ -55,8 +55,21 @@ static void	append_node(t_stack_node **stack, int n)
 	{
 		last = get_last(*stack);
 		last->next = node;
-		node->prev = last_node;
+		node->prev = last;
 	}
+}
+
+t_stack_node	*get_cheapest(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
 }
 
 void	init_a(t_stack_node **a, char **argv)
@@ -79,9 +92,7 @@ void	init_a(t_stack_node **a, char **argv)
 	}
 }
 
-void	push_prep(t_stack_node **stack,
-						t_stack_node *top_node,
-						char stack_name)
+void	push_prep(t_stack_node **stack, t_stack_node *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
@@ -90,14 +101,14 @@ void	push_prep(t_stack_node **stack,
 			if (top_node->above_median)
 				rotate_stack(stack, "ra", false);
 			else
-				reverse_rotate_stack(stack, "rra", false);
+				rev_rotate_stack(stack, "rra", false);
 		}
 		else if (stack_name == 'b')
 		{
 			if (top_node->above_median)
 				rotate_stack(stack, "rb", false);
 			else
-				reverse_rotate_stack(stack, "rrb" false);
+				rev_rotate_stack(stack, "rrb", false);
 		}
 	}
 }

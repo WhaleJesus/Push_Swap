@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:33 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/29 14:30:02 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/30 17:39:20 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	error_syntax(char *str_n)
 {
 	if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
 		return (1);
-	if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= 0 && str[1] <= '9'))
-			return (1);
+	if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= 0 && str_n[1] <= '9'))
+		return (1);
 	while (*++str_n)
 	{
 		if (!(*str_n >= '0' && *str_n <= '9'))
@@ -57,9 +57,15 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-void	_free(t_stack_node **a)
+void	free_errors(t_stack_node **a)
 {
 	free_stack(a);
 	ft_printf("ERROR\n");
+	exit(1);
+}
+
+void	exit_program(char *msg)
+{
+	ft_printf("%s", msg);
 	exit(1);
 }

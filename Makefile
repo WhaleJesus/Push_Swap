@@ -6,26 +6,34 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/11 15:19:11 by sklaps            #+#    #+#              #
-#    Updated: 2024/08/28 11:01:01 by sklaps           ###   ########.fr        #
+#    Updated: 2024/08/30 19:23:24 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =			Push_Swap
 LIBFT =			libft.a
 PS_FILES =		push_swap.c \
-				input.c
+				input.c \
+				stack_utils.c \
+				init_stack.c\
+				errors.c \
+				ab.c \
+				ba.c
 COM_FILES =		rev_rotate.c \
 				rotate.c \
-				swap.c
+				swap.c \
+				push.c \
+				sort.c \
+				sort_three.c
 PS_DIR =		push_swap/
 COM_DIR =		commands/
-SRC_DIR =		src2/
+SRC_DIR =		src/
 SRCC =			$(addprefix $(COM_DIR), $(COM_FILES))
 SRCPS =			$(addprefix $(PS_DIR), $(PS_FILES))
 SRC =			$(addprefix $(SRC_DIR), $(SRCC)) $(addprefix $(SRC_DIR), $(SRCPS))
 OBJ =			${SRC:.c=.o}
 CC = 			cc
-CFLAGS =		-Wall -Wextra -Werror
+CFLAGS =		-Wall -Wextra -Werror -g
 INCLUDE =		-I include
 RM =			rm -rf
 

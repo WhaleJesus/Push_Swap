@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 16:15:54 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/29 16:39:06 by sklaps           ###   ########.fr       */
+/*   Created: 2024/07/29 20:41:06 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/30 18:55:30 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../ps.h"
 
-static void	move_a_b(t_stack_node **a, t_stack_node **b)
+void	check_input(char **argv)
 {
-	t_stack_node	*cheapest;
+	int	i;
 
-	cheapest = get_cheapest(*a);
-	if (cheapest->above_median && cheapest->target->above_median)
-		rotate_both(a, b, cheapest);
-	else if (!(cheapest->above_median) && !(cheapest->target->above_median))
-		rev_rotate_both(a, b, cheapest);
-	push_prep(a, cheapest, 'a');
-	push_prep(b, cheapest->target, 'b');
-	push_stack(b, a, 'a', false);
+	argv++;
+	while (*argv)
+	{
+		ft_printf("nigga %s nigga \n", *argv);
+		i = 0;
+		while ((*argv)[i])
+		{
+			ft_printf("%c %i\n", (*argv)[i], i);
+			if ((*argv)[i] == '-')
+			{
+				i++;
+				if (!ft_isdigit((*argv)[i]))
+					exit_program("Please provide only numbers");
+			}
+			else if (!ft_isdigit((*argv)[i]))
+			{
+				exit_program("Please provide only numbers");
+			}
+			i++;
+		}
+		argv++;
+	}
 }

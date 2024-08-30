@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_a_to_b.c                                      :+:      :+:    :+:   */
+/*   ab.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 18:51:43 by sklaps            #+#    #+#             */
-/*   Updated: 2024/07/09 19:43:27 by sklaps           ###   ########.fr       */
+/*   Created: 2024/08/26 16:21:08 by sklaps            #+#    #+#             */
+/*   Updated: 2024/08/30 17:43:46 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ps.h"
+#include "../../ps.h"
 
 void	current_index(t_stack_node *stack)
 {
@@ -36,7 +36,7 @@ void	current_index(t_stack_node *stack)
 static void	set_target_a(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_b;
-	t_stack_node	*target_node;
+	t_stack_node	*target;
 	long			best_match_index;
 
 	while (a)
@@ -45,18 +45,17 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)
 		current_b = b;
 		while (current_b)
 		{
-			if (current_b->nbr < a->nbr
-				&& current_b->nbr > best_match_index)
+			if (current_b->nbr < a->nbr && current_b->nbr > best_match_index)
 			{
 				best_match_index = current_b->nbr;
-				target_node = current_b;
+				target = current_b;
 			}
 			current_b = current_b->next;
 		}
 		if (best_match_index == LONG_MIN)
-			a->target_node = find_max(b);
+			a->target = get_min_max(a, 1);
 		else
-			a->target_node = target_node;
+			a->target = target;
 		a = a->next;
 	}
 }
@@ -73,10 +72,10 @@ static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 		a->push_cost = a->index;
 		if (!(a->above_median))
 			a->push_cost = len_a - (a->index);
-		if (a->target_node->above_median)
-			a->push_cost += a->target_node->index;
+		if (a->target->above_median)
+			a->push_cost += len_b - (a->target->index);
 		else
-			a->push_cost += len_b - (a->target_node->index);
+			a->push_cost += len_b - (a->target->index);
 		a = a->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:10:08 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/29 15:03:26 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/30 16:41:23 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	rotate(t_stack_node **stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	last_node = find_last(*stack);
+	last_node = get_last(*stack);
 	last_node->next = *stack;
 	(*stack) = (*stack)->next;
 	last_node->next->prev = last_node;
