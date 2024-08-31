@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:15:54 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/30 19:44:04 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:45:05 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	move_a_b(t_stack_node **a, t_stack_node **b)
 static void	move_b_a(t_stack_node **a, t_stack_node **b)
 {
 	push_prep(a, (*b)->target, 'a');
-	papb(a, b, 'b', false);
+	papb(a, b, 'a', false);
 }
 
 static void	min_top(t_stack_node **a)

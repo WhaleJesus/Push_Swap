@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:21:08 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/30 17:43:46 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:18:29 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)
 			current_b = current_b->next;
 		}
 		if (best_match_index == LONG_MIN)
-			a->target = get_min_max(a, 1);
+			a->target = get_min_max(b, 1);
 		else
 			a->target = target;
 		a = a->next;
@@ -73,7 +73,7 @@ static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 		if (!(a->above_median))
 			a->push_cost = len_a - (a->index);
 		if (a->target->above_median)
-			a->push_cost += len_b - (a->target->index);
+			a->push_cost += a->target->index;
 		else
 			a->push_cost += len_b - (a->target->index);
 		a = a->next;

@@ -6,11 +6,23 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:04:30 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/30 19:00:56 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/08/31 18:44:14 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../ps.h"
+
+static void print_stack(t_stack_node *stack)
+{
+    t_stack_node *current = stack;
+
+    while (current)
+    {
+        ft_printf("%d ", current->nbr);
+        current = current->next;
+    }
+    ft_printf("\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -22,9 +34,7 @@ int	main(int argc, char **argv)
 	if (argc < 4)
 		exit_program("Wrong number of args\n");
 	check_input(argv);
-	ft_printf("input correct");
 	init_a(&a, argv + 1);
-	ft_printf("init a done");
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -34,6 +44,7 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);
 	}
+	print_stack(a);
 	free_stack(&a);
 	return (0);
 }
