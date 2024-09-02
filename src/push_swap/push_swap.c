@@ -6,22 +6,24 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:04:30 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/31 18:44:14 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/02 14:58:13 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../ps.h"
 
-static void print_stack(t_stack_node *stack)
+/*Put this function before free_stack() in main to print final result*/
+static void	print_stack(t_stack_node *stack)
 {
-    t_stack_node *current = stack;
+	t_stack_node	*current;
 
-    while (current)
-    {
-        ft_printf("%d ", current->nbr);
-        current = current->next;
-    }
-    ft_printf("\n");
+	current = stack;
+	while (current)
+	{
+		ft_printf("%d ", current->nbr);
+		current = current->next;
+	}
+	ft_printf("\n");
 }
 
 int	main(int argc, char **argv)
@@ -44,7 +46,6 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);
 	}
-	print_stack(a);
 	free_stack(&a);
 	return (0);
 }

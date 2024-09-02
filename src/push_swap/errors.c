@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:33 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/30 17:39:20 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/02 14:56:00 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ void	free_stack(t_stack_node **stack)
 void	free_errors(t_stack_node **a)
 {
 	free_stack(a);
-	ft_printf("ERROR\n");
+	ft_printf("Error\n");
 	exit(1);
 }
 
 void	exit_program(char *msg)
 {
-	ft_printf("%s", msg);
+	msg = "AAAAAAA";
+	ft_printf("Error\n");
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:39:43 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/31 17:44:43 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/02 14:53:47 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef struct s_stack_node
 	int					push_cost;
 	bool				above_median;
 	bool				cheapest;
-	struct s_stack_node *target;
+	struct s_stack_node	*target;
 	struct s_stack_node	*next;
-	struct s_stack_node *prev;
+	struct s_stack_node	*prev;
 }	t_stack_node;
 
 void			papb(t_stack_node **a, t_stack_node **b, char target, bool msg);
@@ -55,7 +55,8 @@ void			free_errors(t_stack_node **a);
 void			exit_program(char *msg);
 
 void			init_a(t_stack_node **a, char **argv);
-void			push_prep(t_stack_node **stack, t_stack_node *top_node, char stack_name);
+void			push_prep(t_stack_node **stack, t_stack_node *top_node,
+					char stack_name);
 t_stack_node	*get_cheapest(t_stack_node *stack);
 
 void			check_input(char **argv);
