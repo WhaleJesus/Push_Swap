@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:45:58 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/30 17:33:34 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:41:57 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	sort_three(t_stack_node **a)
 
 	biggest = get_min_max(*a, 1);
 	if (biggest == *a)
-		rotate_stack(a, "a", false);
+		rotate_stack(a, "ra", false);
 	else if ((*a)->next == biggest)
-		rev_rotate_stack(a, "a", false);
+		rev_rotate_stack(a, "rra", false);
 	if ((*a)->nbr > (*a)->next->nbr)
-		swap_stack(a, "a", false);
+		swap_stack(a, "sa", false);
 }

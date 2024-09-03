@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:15:54 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/31 17:45:05 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:34:16 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	min_top(t_stack_node **a)
 	while ((*a)->nbr != get_min_max(*a, 0)->nbr)
 	{
 		if (get_min_max(*a, 0)->above_median)
-			rotate_stack(a, "a", false);
+			rotate_stack(a, "ra", false);
 		else
 			rev_rotate_stack(a, "rra", false);
 	}

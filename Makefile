@@ -6,11 +6,11 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/11 15:19:11 by sklaps            #+#    #+#              #
-#    Updated: 2024/08/30 19:23:24 by sklaps           ###   ########.fr        #
+#    Updated: 2024/09/03 14:45:05 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			Push_Swap
+NAME =			push_swap
 LIBFT =			libft.a
 PS_FILES =		push_swap.c \
 				input.c \

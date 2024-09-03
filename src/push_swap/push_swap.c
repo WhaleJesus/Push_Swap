@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:04:30 by sklaps            #+#    #+#             */
-/*   Updated: 2024/09/02 14:58:13 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:23:43 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc < 4)
-		exit_program("Wrong number of args\n");
+	if (argc < 2)
+		return (0);
 	check_input(argv);
 	init_a(&a, argv + 1);
 	if (!stack_sorted(a))
@@ -48,4 +48,5 @@ int	main(int argc, char **argv)
 	}
 	free_stack(&a);
 	return (0);
+	print_stack(a);
 }
