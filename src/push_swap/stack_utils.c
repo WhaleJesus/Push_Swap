@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 14:43:41 by sklaps            #+#    #+#             */
-/*   Updated: 2024/08/30 17:26:56 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:06:41 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	stack_sorted(t_stack_node *stack)
 		return (1);
 	while (stack->next)
 	{
-		if (stack->next)
+		if (stack->next->nbr < stack->nbr)
 			return (false);
 		stack = stack->next;
 	}
