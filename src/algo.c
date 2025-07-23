@@ -68,32 +68,23 @@ void	rank_stack(t_data *data)
 	}
 }
 
-void	radix_sort(t_data *data)
+void	sort_four(t_data *data)
 {
-	int	size;
-	int	max_bits;
-	int	i;
-	int	j;
+	int min_index;
 
-	size = stacklen(&data->a);
-	max_bits = 0;
-	i = 0;
-	while ((size - 1) >> max_bits)
-		max_bits++;
-	while (i++ < max_bits)
+	min_index = find_min_index(data->a);
+	if (min_index == 1)
+		rotate(data, &(data->a), "ra");
+	else if (min_index == 2)
 	{
-		j = 0;
-		while (j < size)
-		{
-			if (((data->a->rank >> i) & 1) == 0)
-				push(data, &(data->a), &(data->b), "pb");
-			else
-				rotate(data, &(data->a), "ra");
-			j++;
-		}
-		while (data->b)
-			push(data, &(data->b), &(data->a), "pa");
+		rotate(data, &(data->a), "ra");
+		rotate(data, &(data->a), "ra");
 	}
+	else if (min_index == 3)
+		reverse_rotate(data, &(data->a), "rra");
+	push(data, &(data->a), &(data->b), "pb");
+	sort_three(data);
+	push(data, &(data->b), &(data->a), "pa");
 }
 
 void	algo(t_data *data)
@@ -108,6 +99,10 @@ void	algo(t_data *data)
 		sort_two(data);
 	else if (len == 3)
 		sort_three(data);
+	else if (len == 4)
+		sort_four(data);
+	else if (len == 5)
+		sort_five(data);
 	else
 		turk_algo(data);
 }

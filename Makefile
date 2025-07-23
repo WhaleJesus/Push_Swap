@@ -31,7 +31,8 @@ SRCFILES	= input.c \
 			  turk_algo_helpers.c \
 			  turk_algo_helpers_2.c \
 			  turk_algo_push_more_than_25_lines.c \
-			  print_list.c
+			  print_list.c \
+			  algo_helpers.c
 
 MAINFILE	= main.c
 
