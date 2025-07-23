@@ -3,55 +3,79 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
+#    By: sklaps <sklaps@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/11 15:19:11 by sklaps            #+#    #+#              #
-#    Updated: 2024/09/03 14:45:05 by sklaps           ###   ########.fr        #
+#    Created: 2025/06/11 15:12:46 by sklaps            #+#    #+#              #
+#    Updated: 2025/06/11 15:13:04 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			push_swap
-LIBFT =			libft.a
-PS_FILES =		push_swap.c \
-				input.c \
-				stack_utils.c \
-				init_stack.c\
-				errors.c \
-				ab.c \
-				ba.c
-COM_FILES =		rev_rotate.c \
-				rotate.c \
-				swap.c \
-				push.c \
-				sort.c \
-				sort_three.c
-PS_DIR =		push_swap/
-COM_DIR =		commands/
-SRC_DIR =		src/
-SRCC =			$(addprefix $(COM_DIR), $(COM_FILES))
-SRCPS =			$(addprefix $(PS_DIR), $(PS_FILES))
-SRC =			$(addprefix $(SRC_DIR), $(SRCC)) $(addprefix $(SRC_DIR), $(SRCPS))
-OBJ =			${SRC:.c=.o}
-CC = 			cc
-CFLAGS =		-Wall -Wextra -Werror -g
-INCLUDE =		-I include
-RM =			rm -rf
+NAME		= push_swap
+
+CC			= cc
+CFLAGS		= -g -Wall -Wextra -Werror -Iinclude -Ilibft
+
+SRCDIR		= src
+OBJDIR		= objs
+LIBFTDIR	= libft
+LIBFT		= $(LIBFTDIR)/libft.a
+
+SRCFILES	= input.c \
+			  exit.c \
+			  init_stack.c \
+			  swap.c \
+			  push.c \
+			  rotate.c \
+			  algo.c \
+			  turk_algo.c \
+			  turk_algo_helpers.c \
+			  turk_algo_helpers_2.c \
+			  turk_algo_push_more_than_25_lines.c \
+			  print_list.c
+
+MAINFILE	= main.c
+
+SRC			= $(addprefix $(SRCDIR)/, $(SRCFILES))
+MAIN		= $(SRCDIR)/$(MAINFILE)
+
+OBJ			= $(addprefix $(OBJDIR)/, $(SRCFILES:.c=.o))
+MAINOBJ		= $(OBJDIR)/$(MAINFILE:.c=.o)
+
+RM			= rm -f
+MKDIR		= mkdir -p
+
+# Colors (optional)
+GREEN		= \033[0;32m
+YELLOW		= \033[38;2;255;255;0m
+NEON		= \033[38;5;198m 
+NC			= \033[0m
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
-	@make -C libft
-	$(CC) $(CFLAGS) $(OBJ) $(INCLUDE) libft/$(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJ) $(MAINOBJ)
+	@echo "Linking $(NAME)..."
+	$(CC) $(CFLAGS) $(OBJ) $(MAINOBJ) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)✔️ Build successful: $(NAME)$(nc)"
 
-clean :
-	@make clean -C libft
-	${RM} $(OBJ)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@$(MKDIR) $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-fclean : clean
-	@make fclean -C libft
-	${RM} $(NAME)
-	${RM} $(LIBFT)
+$(LIBFT):
+	$(MAKE) -C $(LIBFTDIR)
 
-re : fclean all
+clean:
+	$(MAKE) -C $(LIBFTDIR) clean
+	$(RM) $(OBJ)
+	$(RM) $(MAINOBJ)
+	@echo "$(GREEN)clean done$(NC)"
+
+fclean: clean
+	$(MAKE) -C $(LIBFTDIR) fclean
+	$(RM) $(NAME)
+	@echo "$(GREEN)fclean done$(NC)"
+
+re: fclean all
 
 .PHONY: all clean fclean re
+

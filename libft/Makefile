@@ -68,21 +68,24 @@ BOBJECTS = $(BSOURCES:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all: premsg $(NAME)
+
+premsg:
+	@echo "\033[38;5;198m[ LIBFT ] Compiling archive...\033[0m"
 
 $(NAME): $(OBJECTS) $(BOBJECTS)
-		   ar -rcs $@ $?
+	@ar -rcs $@ $?
 
 bonus: $(OBJECTS) $(BOBJECTS)
-		ar -rcs $(NAME) $?
+	@ar -rcs $(NAME) $?
 
 %.o: %.c
-		$(CC) -c $(CFLAGS) $?
+	@$(CC) -c $(CFLAGS) $?
 
 clean:
-	rm -f $(OBJECTS) $(BOBJECTS)
+	@rm -f $(OBJECTS) $(BOBJECTS)
 
 fclean:	clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
