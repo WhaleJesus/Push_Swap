@@ -70,7 +70,7 @@ void	rank_stack(t_data *data)
 
 void	sort_four(t_data *data)
 {
-	int min_index;
+	int	min_index;
 
 	min_index = find_min_index(data->a);
 	if (min_index == 1)

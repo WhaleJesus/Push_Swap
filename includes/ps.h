@@ -95,7 +95,7 @@ t_stack	*get_max(t_stack *head);
 t_stack	*get_min(t_stack *head);
 
 // algo
-int	find_min_index(t_stack *head);
+int		find_min_index(t_stack *head);
 void	sort_five(t_data *data);
 
 // print list
